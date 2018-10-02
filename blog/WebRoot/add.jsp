@@ -5,13 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/blog/static/css/style.css"/>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/blog/static/layui/css/layui.css" />
-<script src="http://localhost:8080/blog/static/js/jquery-1.8.2.js" type="text/javascript" charset="utf-8"></script>
-<script src="http://localhost:8080/blog/static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<%@ include file="/commons/common.jsp"%>
 <script type="text/javascript">
 	$(function(){
-		alert()
 	});
 	function addTechnology(){
 		var title = $("#title").val();

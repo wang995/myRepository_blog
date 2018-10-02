@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ysd.mapper.WebSiteAdviseMapper">
+	<select id="queryAllAdvice" resultType="com.ysd.entity.WebSiteAdvise">
+		select * from websiteadvise
+	</select>
+	
+	<insert id="addAdvice" parameterType="com.ysd.entity.WebSiteAdvise">
+		insert into websiteadvise (content,name) values(#{content},#{name});
+	</insert>
+	
+	<update id="updateAdvice" parameterType="com.ysd.entity.WebSiteAdvise">
+		update websiteadvise set content=#{content},name=#{name}
+	</update>
+	
+	<delete id="deleteAdvice" parameterType="Integer">
+		delete from websiteadvise where id = #{adviceID};
+	</delete>
+	
+</mapper>

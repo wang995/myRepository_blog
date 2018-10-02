@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ysd.entity.Personnel;
 import com.ysd.entity.Technology;
 import com.ysd.service.QuestionsServiceImpl;
+import com.ysd.service.WebSiteAdviseServiceImpl;
 
 @Controller
 public class QuestionsController {
@@ -36,5 +38,27 @@ public class QuestionsController {
 	@RequestMapping("/updateTechnology")
 	public @ResponseBody boolean updateTechnology(Technology technology) {
 		return questionsServiceImpl.updateTechnology(technology);
+	}
+	//--------------------------------------------------------------------------
+	@RequestMapping("/queryPersonnel")
+	public @ResponseBody List<Personnel> queryAllPersonnel() {
+		return questionsServiceImpl.queryAllPersonnel();
+	}
+	
+	@RequestMapping("/addPersonnel")
+	public @ResponseBody boolean addPersonnel(Personnel personnel) {
+		System.out.println("<<<<<<<添加");
+		System.out.println(personnel);
+		return questionsServiceImpl.addPersonnel(personnel);
+	}
+	
+	@RequestMapping("/deletePersonnel")
+	public @ResponseBody boolean deletePersonnel(Integer personnelID) {
+		return questionsServiceImpl.deletePersonnel(personnelID);
+	}
+	
+	@RequestMapping("/updatePersonnel")
+	public @ResponseBody boolean updatePersonnel(Personnel personnel) {
+		return questionsServiceImpl.updatePersonnel(personnel);
 	}
 }

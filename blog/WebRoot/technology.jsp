@@ -5,12 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Xl995_Blog - 个人网站</title>
-<link rel="stylesheet" type="text/css"
-	href="http://localhost:8080/blog/static/layui/css/layui.css" />
-<script src="http://localhost:8080/blog/static/js/jquery-1.8.2.js"
-	type="text/javascript" charset="utf-8"></script>
-<script src="http://localhost:8080/blog/static/layui/layui.js"
-	type="text/javascript" charset="utf-8"></script>
+<%@ include file="/commons/common.jsp"%>
 <style type="text/css">
 * {
 	margin: 0px;
@@ -23,13 +18,11 @@
 	word-break: break-all;
 	white-space: pre-wrap;
 }
-
 .content {
 	word-break: break-all;
 	white-space: pre-wrap;
 	font-size: 18px;
 }
-
 #main {
 	width: 70%;
 	margin: 50px auto;
@@ -63,6 +56,10 @@
 	justify-content: space-between;
 	font-family: '幼圆';
 }
+.teid{
+	color:gray;
+	font-family: "幼圆";
+}
 </style>
 <script type="text/javascript">
 	var layer;
@@ -77,7 +74,7 @@
 			$.each(JSON.parse(res), function(i, val) {
 				$("#main").prepend(
 						"<div class='Technology'><div class='title'>"
-								+ val.title + "<button onclick='openFeedBackWindow("+res.id
+								+ val.title + "<sapn class='teid'>_"+val.id+"</spna><button onclick='openFeedBackWindow("+val.id
 								+")' class='layui-btn layui-btn-primary feedback'><i class='layui-icon layui-icon-username'></i>反馈 / 纠错 / 评论</button></div><pre class='content'>"
 								+ val.content + "</pre></div>")
 			});
@@ -85,7 +82,7 @@
 	}
 	function search(){
 		layer.msg($("#search").val())
-	}
+	} 
 	function advice(){
 		layer.open({
 	        type: 1
@@ -113,21 +110,33 @@
 	var index;
 	function openFeedBackWindow(technologyId){
 		index = layer.open({
-		  title:"反馈 / 纠错 / 评论 - "+"10023",
+		  title:"反馈 / 纠错 / 评论 - "+technologyId,
 		  type: 1, 
 		  area: ['420px', '245px'], //宽高
-		  content: "<div class='feedbackdiv'><textarea id='feedbackContent' placeholder='说点什么吧！' style='width: 350px;' class='layui-textarea'></textarea><input id='feedbackName' type='text' placeholder='Your Name' style='width: 350px;display: inline;margin: 5px 0px;' class='layui-input'><span style='float: right;'><button onclick='cancel()' class='layui-btn layui-btn-danger'>取消</button><button onclick='feedbackCommit()' class='layui-btn layui-btn-normal'>提交</button> </span></div>",
+		  content: "<div class='feedbackdiv'><textarea id='feedbackContent' placeholder='说点什么吧！' style='width: 350px;' class='layui-textarea'></textarea><input id='feedbackName' type='text' placeholder='Your Name' style='width: 350px;display: inline;margin: 5px 0px;' class='layui-input'><span style='float: right;'><button onclick='cancel()' class='layui-btn layui-btn-danger'>取消</button><button onclick='feedbackCommit("+technologyId+")' class='layui-btn layui-btn-normal'>提交</button> </span></div>",
 		  closeBtn: 1,
 		}); 
 	}
-	function feedbackCommit(){
+	function feedbackCommit(technologyId){
 		if($("#feedbackContent").val()==""){
 			layer.msg("请写点东西再提交！",{icon: 5});
 		}else if($("#feedbackName").val()==""){
 			layer.msg("请输入你的名字！",{icon: 5});
+		}else if($("#feedbackName").val()=="王晓磊"){
+			layer.msg("此名字被系统保留！",{icon: 5});
 		}else{
+			$.post("addFeedBack",{
+				questionID:technologyId,
+				content:$("#feedbackContent").val(),
+				name:$("#feedbackName").val()
+			},function(res){
+				if(res){
+					layer.msg("提交成功，感谢您的支持！",{icon: 1});
+				}else{
+					layer.msg("提交失败！",{icon: 0});
+				}
+			})
 			layer.close(index);
-			layer.msg("提交成功，感谢您的支持！",{icon: 1});
 		}
 	}
 	function cancel(){

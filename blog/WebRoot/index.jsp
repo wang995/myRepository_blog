@@ -5,16 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Xl995_Blog - 个人网站</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/blog/static/css/style.css"/>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/blog/static/layui/css/layui.css" />
-<script src="http://localhost:8080/blog/static/js/jquery-1.8.2.js" type="text/javascript" charset="utf-8"></script>
-<script src="http://localhost:8080/blog/static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<%@ include file="/commons/common.jsp"%>
 <style type="text/css">
 * {
 	margin: 0px;
 	padding: 0px;
 	/* border: 1px solid red; */
 }
+
 #main {
 	width: 70%;
 	margin: 70px auto;
@@ -93,9 +91,22 @@
 			layer.msg("请写点东西再提交！",{icon: 5});
 		}else if($("#adviceName").val()==""){
 			layer.msg("请输入你的名字！",{icon: 5});
-		}else{
+		}else if($("#adviceName").val()=="王晓磊"){
+			layer.msg("此名字被系统保留！",{icon: 5});
+		}
+		else{
 			layer.close(index);
-			layer.msg("提交成功，感谢您的支持！",{icon: 1});
+			$.post("addAdvice",{
+				content:$("#adviceContent").val(),
+				name:$("#adviceName").val()
+			},function(res){
+				if(res){
+					layer.msg("提交成功，感谢您的支持！",{icon: 1});
+				}else{
+					layer.msg("提交失败！",{icon: 0});
+				}
+			})
+			
 		}
 	}
 	function cancel(){
@@ -147,7 +158,7 @@
                 <div class="he_border1_caption">
 		 		<h1>50</h1>
                     <h3 class="he_border1_caption_h">软件工具下载</h3>
-					<p class="he_border1_caption_p">学习办公工具-网盘链接</p>
+					<p class="he_border1_caption_p">阿里云OSS对象存储</p>
                     <a class="he_border1_caption_a" href="http://www.baidu.com"></a>
                 </div>
          </div>

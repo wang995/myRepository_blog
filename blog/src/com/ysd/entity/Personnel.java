@@ -4,6 +4,15 @@ public class Personnel {
 	private Integer id;
 	private String title;
 	private String content;
+	public Personnel(Integer id, String title, String content) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.content = content;
+	}
+	public Personnel() {
+		super();
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -22,18 +31,9 @@ public class Personnel {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Personnel(Integer id, String title, String content) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.content = content;
-	}
-	public Personnel() {
-		super();
-	}
 	@Override
 	public String toString() {
-		return "Personnel [id=" + id + ", title=" + title + ", content=" + content + "]";
+		return "personnel [id=" + id + ", title=" + title + ", content=" + content + "]";
 	}
-	//test
+	
 }

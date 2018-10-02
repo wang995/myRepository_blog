@@ -5,15 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Xl995_Blog - 人事面试</title> 
-<link rel="stylesheet" type="text/css"
-	href="http://localhost:8080/blog/static/layui/css/layui.css" />
-<script src="http://localhost:8080/blog/static/js/jquery-1.8.2.js"
-	type="text/javascript" charset="utf-8"></script>
-<script src="http://localhost:8080/blog/static/layui/layui.js"
-	type="text/javascript" charset="utf-8"></script>
-<style type="text/css">
-	
-</style>
+<%@ include file="/commons/common.jsp"%>
 </head>
 <body>
 	<div style="width: 420px;height: 240px;border: 1px solid gray;">

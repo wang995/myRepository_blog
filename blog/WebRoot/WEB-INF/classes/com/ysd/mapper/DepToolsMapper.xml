@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ysd.mapper.DepToolsMapper">
+	<select id="queryAllDepTool" resultType="com.ysd.entity.DepTools">
+		select * from deptools
+	</select>
+
+	<insert id="addDepTools" parameterType="com.ysd.entity.DepTools">
+		insert into deptools (title,link,size,remarks) values(#{title},#{link},#{size},#{remarks});
+	</insert>
+	
+	<update id="updateDepTools" parameterType="com.ysd.entity.DepTools">
+		update deptools set title=#{title},link=#{link},size=#{size},remarks=#{remarks}
+	</update>
+	
+	<delete id="deleteDepTools" parameterType="Integer">
+		delete from deptools where id = #{depTools};
+	</delete>
+	
+</mapper>
