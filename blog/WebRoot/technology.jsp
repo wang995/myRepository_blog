@@ -70,7 +70,7 @@
 		getTechnology();
 	})
 	function getTechnology() {
-		$.post("http://localhost:8080/blog/queryTechnology", function(res) {
+		$.post("queryTechnology", function(res) {
 			$.each(JSON.parse(res), function(i, val) {
 				$("#main").prepend(
 						"<div class='Technology'><div class='title'>"
@@ -100,11 +100,17 @@
 	      });
 	}
 	function admin(){
-		layer.prompt({title: '请输入管理密码', formType: 1}, function(pass, index){
-		  layer.close(index);
-			  layer.msg('系统消息：请出门左拐谢谢！',function(){
-				  
-			  });
+		layer.prompt({title: '请输入密码', formType: 1}, function(pass, index){
+			  $.post("admin/technology",{
+				  password:pass
+			  },function(res){
+			  	  layer.close(index);
+				  if(res=="true"){
+					  window.location.href="technology_admin.jsp";
+				  }else{
+					  layer.msg('系统消息：请出门左拐谢谢！',function(){});
+				  }
+			  })
 		 });
 	}
 	var index;
@@ -157,7 +163,7 @@
 				<button onclick="admin()" class="layui-btn layui-btn-danger"><i class="layui-icon layui-icon-username"></i>管理员</button>
 			</div>
 		</div>
-	</div> 
+	</div>
 	<div id="main"></div> 
 </body>
 </html>

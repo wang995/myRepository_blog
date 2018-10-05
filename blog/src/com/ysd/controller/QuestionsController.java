@@ -1,9 +1,15 @@
 package com.ysd.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,17 +32,18 @@ public class QuestionsController {
 	@RequestMapping("/addTechnology")
 	public @ResponseBody boolean addTechnology(Technology technology) {
 		System.out.println("<<<<<<<添加");
-		System.out.println(technology);
 		return questionsServiceImpl.addTechnology(technology);
 	}
 	
 	@RequestMapping("/deleteTechnology")
 	public @ResponseBody boolean deleteTechnology(Integer technologyID) {
+		System.out.println(technologyID);
 		return questionsServiceImpl.deleteTechnology(technologyID);
 	}
 	
 	@RequestMapping("/updateTechnology")
 	public @ResponseBody boolean updateTechnology(Technology technology) {
+		System.out.println(technology);
 		return questionsServiceImpl.updateTechnology(technology);
 	}
 	//--------------------------------------------------------------------------
@@ -60,5 +67,23 @@ public class QuestionsController {
 	@RequestMapping("/updatePersonnel")
 	public @ResponseBody boolean updatePersonnel(Personnel personnel) {
 		return questionsServiceImpl.updatePersonnel(personnel);
+	}
+	
+	@RequestMapping("/admin/technology")
+	public @ResponseBody boolean admin_technology(HttpServletRequest request,HttpServletResponse response, String password) {
+		boolean flag = false;
+		if(password.equals("admin_t")) {
+			HttpSession session = request.getSession();
+			session.setAttribute("isAdmin", true);
+			session.setMaxInactiveInterval(-1);
+			flag=true;
+		}else {
+			flag=false;
+		}
+		return flag;
+	}
+	@RequestMapping("/")
+	public String index() {
+		return "index";
 	}
 }

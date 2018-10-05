@@ -108,35 +108,41 @@
 		}); 
 	}
 	function addCommit(){
-		if($("#feedbackContent").val()==""){
-			layer.msg("请写点东西再提交！",{icon: 5});
-		}else if($("#feedbackName").val()==""){
-			layer.msg("请输入你的名字！",{icon: 5});
+		if($("#addTitle").val()==""){
+			layer.msg("请输入标题！",{icon: 5});
+		}else if($("#addContent").val()==""){
+			layer.msg("请输入内容！",{icon: 5});
 		}else{
-			layer.close(index);
-			layer.msg("提交成功，感谢您的支持！",{icon: 1});
+			$.post("addTechnology",{
+				title:$("#addTitle").val(),
+				content:$("#addContent").val()
+			},function(res){
+				if(res){
+					layer.close(index);
+					layer.msg("添加成功！",{icon: 1});
+				}else{
+					layer.msg("添加失败！",{icon: 0});
+				}
+			})
 		}
 	}
 	function updateCommit(){
-		if($("#feedbackContent").val()==""){
-			layer.msg("写点什么都可以！",{icon: 5});
-		}else if($("#feedbackName").val()==""){
-			layer.msg("请输入你的名字！",{icon: 5});
-		}else if($("#feedbackName").val()=="王晓磊"){
-			layer.msg("此名字被系统保留！",{icon: 5});
-		}
-		else{
-			$("updateTechnology",{
-				content:$("#feedbackContent").val(),
-				name:
+		if($("#updateTitle").val()==""){
+			layer.msg("请输入标题！",{icon: 5});
+		}else if($("#updateContent").val()==""){
+			layer.msg("请输入试题内容！",{icon: 5});
+		}else{
+			$.post("updateTechnology",{
+				content:$("#updateContent").val(),
+				title:$("#updateTitle").val()
 			},function(res){
 				if(res){
-					layer.msg("提交成功，感谢您的支持！",{icon: 1});
+					layer.close(index);
+					layer.msg("修改成功！",{icon: 1});
 				}else{
-					layer.msg("提交失败！",{icon: 0});
+					layer.msg("修改失败！",{icon: 0});
 				}
 			})
-			layer.close(index);
 		}
 	}
 	function cancel(){

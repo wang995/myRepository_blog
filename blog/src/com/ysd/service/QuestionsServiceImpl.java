@@ -27,13 +27,13 @@ public class QuestionsServiceImpl implements QuestionServices{
 	@Override
 	public boolean deleteTechnology(Integer technologyID) {
 		// TODO Auto-generated method stub
-		return false;
+		return questionsMapper.deleteTechnology(technologyID);
 	}
 
 	@Override
 	public boolean updateTechnology(Technology technology) {
 		// TODO Auto-generated method stub
-		return false;
+		return questionsMapper.updateTechnology(technology);
 	}
 
 	@Override

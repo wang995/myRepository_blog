@@ -12,11 +12,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="updateTechnology" parameterType="com.ysd.entity.Technology">
-		update technology set title=#{title},title=#{title}
+		update technology set title=#{title},content=#{content} where id=#{id}
 	</update>
 	
 	<delete id="deleteTechnology" parameterType="Integer">
-		delete from technology where id = #{technologyIDs};
-	</delete>
+		delete from technology where id = #{technologyID};
+	</delete> 
 	
 </mapper>
