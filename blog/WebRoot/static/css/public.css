@@ -1,0 +1,32 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	/* border: 1px solid red; */
+}
+#head {
+	width: 100%;
+	height: 50px;
+	z-index: 100px;
+	position: fixed;
+	top: 0px;
+	background-color: rgba(245, 245, 245, 0.8);
+	box-shadow: 2px 0px 2px gray;
+}
+#headconent {
+	color: grey;
+	display: flex;
+	font-size: 20px;
+	align-items: center;
+	justify-content: space-between;
+	font-family: '幼圆';
+}
+.layui-btn-primary:hover{
+	border-color:gray;
+	color: #333;
+}
+.layui-btn:hover{
+	opacity:1;
+}
+#search{
+	width:150px;
+}

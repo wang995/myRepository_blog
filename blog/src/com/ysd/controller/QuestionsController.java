@@ -1,23 +1,20 @@
 package com.ysd.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ysd.entity.Count;
 import com.ysd.entity.Personnel;
 import com.ysd.entity.Technology;
 import com.ysd.service.QuestionsServiceImpl;
-import com.ysd.service.WebSiteAdviseServiceImpl;
 
 @Controller
 public class QuestionsController {
@@ -25,8 +22,8 @@ public class QuestionsController {
 	QuestionsServiceImpl questionsServiceImpl;
 	
 	@RequestMapping("/queryTechnology")
-	public @ResponseBody List<Technology> queryAllTechnology() {
-		return questionsServiceImpl.queryAllTechnology();
+	public @ResponseBody List<Technology> queryAllTechnology(String byString) {
+		return questionsServiceImpl.queryAllTechnology(byString);
 	}
 	
 	@RequestMapping("/addTechnology")
@@ -69,7 +66,7 @@ public class QuestionsController {
 		return questionsServiceImpl.updatePersonnel(personnel);
 	}
 	
-	@RequestMapping("/admin/technology")
+	@RequestMapping("/admin/verify")
 	public @ResponseBody boolean admin_technology(HttpServletRequest request,HttpServletResponse response, String password) {
 		boolean flag = false;
 		if(password.equals("admin_t")) {
@@ -82,8 +79,17 @@ public class QuestionsController {
 		}
 		return flag;
 	}
-	@RequestMapping("/")
-	public String index() {
-		return "index";
+	
+	@RequestMapping("/admin/exit_admin")
+	public @ResponseBody boolean exit_admin(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("isAdmin");
+		System.out.println(session.getAttribute("isAdmin"));
+		return true;
+	}
+	
+	@RequestMapping("/getCount")
+	public @ResponseBody Count getCount() {
+		return questionsServiceImpl.getCount();
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ysd.entity.Count;
 import com.ysd.entity.Personnel;
 import com.ysd.entity.Technology;
 import com.ysd.mapper.QuestionsMapper;
@@ -13,9 +14,9 @@ public class QuestionsServiceImpl implements QuestionServices{
 	@Autowired
 	QuestionsMapper questionsMapper;
 	@Override
-	public List<Technology> queryAllTechnology() {
+	public List<Technology> queryAllTechnology(String byString) {
 		// TODO Auto-generated method stub
-		return questionsMapper.queryAllTechnology();
+		return questionsMapper.queryAllTechnology(byString);
 	}
 
 	@Override
@@ -58,6 +59,12 @@ public class QuestionsServiceImpl implements QuestionServices{
 	public boolean updatePersonnel(Personnel personnel) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Count getCount() {
+		// TODO Auto-generated method stub
+		return questionsMapper.getCount();
 	}
 
 }

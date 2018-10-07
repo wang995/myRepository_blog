@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Xl995_Blog - 技术面试_管理员</title>
+<title>Xl995_Blog - 个人日志_管理员</title>
 <%@ include file="/commons/common.jsp"%>
 <style type="text/css">
 .title {
@@ -150,6 +150,9 @@
 	function cancel(){
 		 layer.close(index);
 	}
+	function exit(){
+		alert("exit");
+	}
 </script>
 </head>
 <body>
@@ -157,12 +160,12 @@
 	<div id="head">
 		<div id="headconent"
 			style="width: 70%; margin: 0px auto; height: 50px">
-			<sapn><a href="index.jsp"><img style="border-radius: 50%;width: 40px;" src="static/img/touxiang.jpg"/></a>&nbsp;&nbsp;管理员 - 技术面试</sapn>
+			<sapn><a href="index.jsp"><img style="border-radius: 50%;width: 40px;" src="static/img/touxiang.jpg"/></a>&nbsp;&nbsp;管理员 - 个人日志</sapn>
 			<div id="" style="font-family: '微软雅黑';display: flex;flex-direction:row;">
 			    <input id="search" style="border: lightgray 1px solid;font-size: 14px;"  name="search" class="layui-input" type="text" placeholder="请输入标题">&nbsp;
-			    <button onclick="totechnology_admin()" class="layui-btn layui-btn-danger">技术</button>
+			    <button onclick="totechnology_admin()" class="layui-btn layui-btn-normal">技术</button>
 			    <button onclick="topersonnel_admin()" class="layui-btn layui-btn-normal">人事</button>
-			    <button onclick="tolog_admin()" class="layui-btn layui-btn-normal">日志</button>
+			    <button onclick="tolog_admin()" class="layui-btn layui-btn-danger">日志</button>
 			    <button onclick="totools_admin()" class="layui-btn layui-btn-normal">工具</button>
 			    <button onclick="toadvise_admin()" class="layui-btn layui-btn-normal">建议</button>
 			    <button onclick="tofeedback_admin()" class="layui-btn layui-btn-normal">评论</button>

@@ -7,11 +7,6 @@
 <title>Xl995_Blog - 个人网站</title>
 <%@ include file="/commons/common.jsp"%>
 <style type="text/css">
-* {
-	margin: 0px;
-	padding: 0px;
-	/* border: 1px solid red; */
-}
 
 #main {
 	width: 70%;
@@ -19,23 +14,6 @@
 	display: flex;
 	flex-direction:row;
 	flex-wrap: wrap;
-}
-#head {
-	width: 100%;
-	height: 50px;
-	z-index: 10px;
-	position: fixed;
-	top: 0px;
-	background-color: rgba(245, 245, 245, 0.8);
-	box-shadow: 2px 0px 2px gray;
-}
-#headconent {
-	color: grey;
-	display: flex;
-	font-size: 20px;
-	align-items: center;
-	justify-content: space-between;
-	font-family: '幼圆';
 }
 .BiaoQian{
 	border: 1px solid darkgray;
@@ -56,10 +34,17 @@
 <script type="text/javascript">
 	var layer;
 	$(function() {
+		getCount();
 		layui.use('layer', function(){
 		  layer = layui.layer;
-		});              
+		});          
 	})
+	function getCount(){
+		$.post("getCount",function(res){
+			$("#depToolsNum").text(res.depToolsNum);
+			$("#technologyNum").text(res.technologyNum);
+		},"json")
+	}
 	function advice(){
 		layer.open({
 	        type: 1
@@ -106,8 +91,21 @@
 					layer.msg("提交失败！",{icon: 0});
 				}
 			})
-			
 		}
+	}
+	function admin(){
+		layer.prompt({title: '请输入密码', formType: 1}, function(pass, index){
+			  $.post("admin/verify",{
+				  password:pass
+			  },function(res){
+			  	  layer.close(index);
+				  if(res=="true"){
+					  window.location.href="technology_admin.jsp";
+				  }else{
+					  layer.msg('系统消息：请出门左拐谢谢！',function(){});
+				  }
+			  })
+		 });
 	}
 	function cancel(){
 		 layer.close(index);
@@ -120,16 +118,17 @@
 		<div id="headconent" style="width: 70%; margin: 0px auto; height: 50px">
 			<sapn><a href="index.jsp"><img style="border-radius: 50%;width: 40px;" src="static/img/touxiang.jpg"/></a>&nbsp;&nbsp;XL995-个人博客</sapn>
 			<div id="" style="font-family: '微软雅黑';display: flex;flex-direction:row;">
-				<button onclick="openAdviceWindow()" class="layui-btn"><i class="layui-icon layui-icon-survey"></i>网站建议</button>
+				<button onclick="openAdviceWindow()" class="layui-btn" style="background-color:#00bab4"><i class="layui-icon layui-icon-survey"></i>网站建议</button>
 				<button onclick="advice()" class="layui-btn layui-btn-normal"><i class="layui-icon layui-icon-survey"></i>公告</button>
-			</div>  
+				<button onclick="admin()" class="layui-btn" style="background-color:coral"><i class="layui-icon layui-icon-username"></i>管理员</button>
+			</div>   
 		</div>
 	</div> 
 	<div id="main">
 		 <div class="he_border1 BiaoQian">
                 <img class="he_border1_img" src="static/img/bd315c6034a85edff2c9d81942540923dd547546.png" alt="Image 01">
                 <div class="he_border1_caption">
-		 		<h1>50</h1>
+		 		<h1 id="technologyNum"></h1>
                     <h3 class="he_border1_caption_h">技术面试题</h3>
 					<p class="he_border1_caption_p">个人总结,仅供参考</p>
                     <a class="he_border1_caption_a" href="technology.jsp"></a>
@@ -138,7 +137,8 @@
 		<div class="he_border1 BiaoQian">
                 <img class="he_border1_img" src="static/img/timg.png" alt="">
                 <div class="he_border1_caption">
-		 			<img width="28px" src="static/img/lock.png"/>
+		 			<img  style="float: right;" width="28px" src="static/img/lock.png"/>
+                	 <h1 id="personnelNum">50</h1>  
                     <h3 class="he_border1_caption_h">人事面试</h3>
 					<p class="he_border1_caption_p">人事面试,暂未开放</p>
                     <a class="he_border1_caption_a" href="http://www.baidu.com"></a>
@@ -147,7 +147,8 @@
          <div class="he_border1 BiaoQian">
                 <img class="he_border1_img" src="static/img/tooopen_sy_171619983217.jpg" alt="Image 01">
                 <div class="he_border1_caption">
-		 			<img width="28px" src="static/img/lock.png"/>
+		 			<img style="float: right;" width="28px" src="static/img/lock.png"/>
+		 			<h1 id="logNum">1</h1>  
                     <h3 class="he_border1_caption_h">个人日志</h3>
 					<p class="he_border1_caption_p">个人日志,暂未开放</p>
                     <a class="he_border1_caption_a" href="http://www.baidu.com"></a>
@@ -156,7 +157,7 @@
          <div class="he_border1 BiaoQian">
                 <img class="he_border1_img" src="static/img/1448590774537.jpg" alt="Image 01">
                 <div class="he_border1_caption">
-		 		<h1>50</h1>
+		 		<h1 id="depToolsNum"></h1>
                     <h3 class="he_border1_caption_h">软件工具下载</h3>
 					<p class="he_border1_caption_p">阿里云OSS对象存储</p>
                     <a class="he_border1_caption_a" href="http://www.baidu.com"></a>

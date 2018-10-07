@@ -7,11 +7,6 @@
 <title>Xl995_Blog - 个人网站</title>
 <%@ include file="/commons/common.jsp"%>
 <style type="text/css">
-* {
-	margin: 0px;
-	padding: 0px;
-	/* border: 1px solid red; */
-}
 .title {
 	margin-bottom: 30px;
 	font-size: 24px;
@@ -36,29 +31,9 @@
 	width:350px;
 	margin:5px auto;
 }
-.feedback{
+.smbtn{
+	z-index: 0px;
 	float:right;
-}
-#head {
-	width: 100%;
-	height: 50px;
-	z-index: 10px;
-	position: fixed;
-	top: 0px;
-	background-color: rgba(245, 245, 245, 0.8);
-	box-shadow: 2px 0px 2px gray;
-}
-#headconent {
-	color: grey;
-	display: flex;
-	font-size: 20px;
-	align-items: center;
-	justify-content: space-between;
-	font-family: '幼圆';
-}
-.teid{
-	color:gray;
-	font-family: "幼圆";
 }
 </style>
 <script type="text/javascript">
@@ -69,19 +44,22 @@
 		});              
 		getTechnology();
 	})
-	function getTechnology() {
-		$.post("queryTechnology", function(res) {
+	function getTechnology(byString) {
+		$("#main").html("");
+		$.post("queryTechnology",{
+			byString:byString
+		}, function(res) {
 			$.each(JSON.parse(res), function(i, val) {
 				$("#main").prepend(
 						"<div class='Technology'><div class='title'>"
-								+ val.title + "<sapn class='teid'>_"+val.id+"</spna><button onclick='openFeedBackWindow("+val.id
-								+")' class='layui-btn layui-btn-primary feedback'><i class='layui-icon layui-icon-username'></i>反馈 / 纠错 / 评论</button></div><pre class='content'>"
+								+ val.title + "<span style='color:lightgrey'>_"+val.id+"</spna><span class='smbtn'><button onclick='openFeedBackWindow("+val.id
+								+")' class='layui-btn layui-btn-primary feedback'><i class='layui-icon layui-icon-username'></i>反馈 / 纠错 / 评论</button><button onclick='showhide_s(this)' class='layui-btn layui-btn-primary'><i class='layui-icon layui-icon-username'></i>查看答案</button></span></div><pre class='content'>"
 								+ val.content + "</pre></div>")
 			});
 		})
 	}
 	function search(){
-		layer.msg($("#search").val())
+		getTechnology($("#search").val());
 	} 
 	function advice(){
 		layer.open({
@@ -98,20 +76,6 @@
 	        ,success: function(layero){
 	        }
 	      });
-	}
-	function admin(){
-		layer.prompt({title: '请输入密码', formType: 1}, function(pass, index){
-			  $.post("admin/technology",{
-				  password:pass
-			  },function(res){
-			  	  layer.close(index);
-				  if(res=="true"){
-					  window.location.href="technology_admin.jsp";
-				  }else{
-					  layer.msg('系统消息：请出门左拐谢谢！',function(){});
-				  }
-			  })
-		 });
 	}
 	var index;
 	function openFeedBackWindow(technologyId){
@@ -145,6 +109,26 @@
 			layer.close(index);
 		}
 	}
+	var isShowFlag = true;
+	function showorhidden(){
+		if(isShowFlag){
+			$(".content").hide();
+			isShowFlag = false;
+		}else{
+			$(".content").show();
+			isShowFlag = true;
+		} 
+	}
+	var isshowdom = true;
+	function showhide_s(this_dom){
+		if(isshowdom){
+			$(this_dom).parent().parent().parent().parent().find(".content").hide();
+			isshowdom = false;			
+		}else{
+			$(this_dom).parent().parent().parent().parent().find(".content").show();
+			isshowdom = true;	
+		}
+	}
 	function cancel(){
 		 layer.close(index);
 	}
@@ -155,12 +139,11 @@
 	<div id="head">
 		<div id="headconent"
 			style="width: 70%; margin: 0px auto; height: 50px">
-			<sapn><a href="index.jsp"><img style="border-radius: 50%;width: 40px;" src="static/img/touxiang.jpg"/></a>&nbsp;&nbsp;XL995_个人博客-技术面试题</sapn>
+			<div><a href="index.jsp"><img style="border-radius: 50%;width: 40px;" src="static/img/touxiang.jpg"/></a>&nbsp;个人博客 - 技术面试题</div>
 			<div id="" style="font-family: '微软雅黑';display: flex;flex-direction:row;">
 			    <input id="search" style="border: lightgray 1px solid;width: 200px;font-size: 14px;"  name="search" class="layui-input" type="text" placeholder="请输入标题">&nbsp;
-			    <button onclick="search()" class="layui-btn "><i class="layui-icon layui-icon-search"></i>搜索</button>
-				<button onclick="advice()" class="layui-btn layui-btn-normal"><i class="layui-icon layui-icon-survey"></i>网站建议</button>
-				<button onclick="admin()" class="layui-btn layui-btn-danger"><i class="layui-icon layui-icon-username"></i>管理员</button>
+			    <button onclick="search()" class="layui-btn layui-btn-normal"><i class="layui-icon layui-icon-search"></i>搜索</button>
+				<button onclick="showorhidden()" class="layui-btn" style="background-color:#00bab4">隐藏 / 显示答案</button>
 			</div>
 		</div>
 	</div>
