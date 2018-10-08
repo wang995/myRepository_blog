@@ -53,7 +53,7 @@
 	})
 	function getTechnology(byString) {
 		$("#main").html("");
-		$.post("http://localhost/blog/queryTechnology",{
+		$.post("queryTechnology",{
 			byString:byString
 		}, function(res) {
 			if(JSON.parse(res)!=""){

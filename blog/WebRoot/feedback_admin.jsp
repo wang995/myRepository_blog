@@ -22,7 +22,7 @@
 	width: 70%;
 	margin: 50px auto;
 }
-.Technology {
+.FeedBack {
 	padding: 30px 0px;
 	border-bottom: 1px solid gray;
 }
@@ -53,12 +53,12 @@
 	})
 	function getTechnology(byString) {
 		$("#main").html("");
-		$.post("http://localhost/blog/queryTechnology",{
+		$.post("queryFeedBack",{
 			byString:byString
 		}, function(res) {
 			$.each(JSON.parse(res), function(i, val) {
 				$("#main").prepend(
-					"<div class='Technology'><div class='title'>"
+					"<div class='FeedBack'><div class='title'>"
 					+ val.title +"<span style='color:lightgrey'>_"+val.id+"</span><span class='updatebtn'><button onclick='openUpdateWindow("+i+","+res+")' class='layui-btn' style='background: lightseagreen;'>修改</button><button onclick='deleteT("+val.id
 					+")' class='layui-btn' style='background-color:lightsalmon'>删除</button></span></div><pre class='content'>"
 					+ val.content + "</pre></div>"

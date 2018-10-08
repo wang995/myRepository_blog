@@ -6,7 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryAllFeedBack" resultType="com.ysd.entity.FeedBack">
 		select * from feedback
 	</select>
-	
+	<select id="queryFeedBackTechnologyID" resultType="Integer">
+		select id from feedback GROUP BY questionid
+	</select>
 	<insert id="addFeedBack" parameterType="com.ysd.entity.FeedBack">
 		insert into feedback (questionid,content,name) values(#{questionID},#{content},#{name});
 	</insert>
