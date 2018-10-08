@@ -66,6 +66,7 @@
 			});
 		})
 	}
+	//cyym
 	function search(){
 		getTechnology($("#search").val());
 	} 
