@@ -26,7 +26,68 @@
 }
 .layui-btn:hover{
 	opacity:1;
+	-webkit-filter:brightness(0.8);
+	-moz-filter:brightness(0.8);
+	filter:brightness(0.8);
 }
 #search{
 	width:150px;
+}
+
+/* ºì³È */
+.hc{
+	background: linear-gradient(left , rgb(237, 81, 65) , rgb(255, 113, 29) 100%);
+	background: -o-linear-gradient(left , rgb(237, 81, 65) , rgb(255, 113, 29) 100%);
+	background: -ms-linear-gradient(left , rgb(237, 81, 65) , rgb(255, 113, 29) 100%);
+	background: -moz-linear-gradient(left , rgb(237, 81, 65) , rgb(255, 113, 29) 100%);
+	background: -webkit-linear-gradient(left , rgb(237, 81, 65) , rgb(255, 113, 29) 100%);
+}
+/* ³È»Æ */
+.ch{
+	background: linear-gradient(left , rgb(255, 113, 29) , rgb(244, 199, 19) 100%);
+background: -o-linear-gradient(left , rgb(255, 113, 29) , rgb(244, 199, 19) 100%);
+background: -ms-linear-gradient(left , rgb(255, 113, 29) , rgb(244, 199, 19) 100%);
+background: -moz-linear-gradient(left , rgb(255, 113, 29) , rgb(244, 199, 19) 100%);
+background: -webkit-linear-gradient(left , rgb(255, 113, 29) , rgb(244, 199, 19) 100%);
+	
+}
+/* »ÆÂÌ */
+.hl{
+	background: linear-gradient(left , rgb(244, 199, 19) , rgb(51, 207, 117) 100%);
+background: -o-linear-gradient(left , rgb(244, 199, 19) , rgb(51, 207, 117) 100%);
+background: -ms-linear-gradient(left , rgb(244, 199, 19) , rgb(51, 207, 117) 100%);
+background: -moz-linear-gradient(left , rgb(244, 199, 19) , rgb(51, 207, 117) 100%);
+background: -webkit-linear-gradient(left , rgb(244, 199, 19) , rgb(51, 207, 117) 100%);
+	
+}
+.lq{
+	background: linear-gradient(left , rgb(51, 207, 117) , rgb(30, 190, 158) 100%);
+background: -o-linear-gradient(left , rgb(51, 207, 117) , rgb(30, 190, 158) 100%);
+background: -ms-linear-gradient(left , rgb(51, 207, 117) , rgb(30, 190, 158) 100%);
+background: -moz-linear-gradient(left , rgb(51, 207, 117) , rgb(30, 190, 158) 100%);
+background: -webkit-linear-gradient(left , rgb(51, 207, 117) , rgb(30, 190, 158) 100%);
+	
+}
+/* Çàµå */
+.qd{
+	background: linear-gradient(left , rgb(30, 190, 158) , rgb(55, 156, 223) 100%);
+background: -o-linear-gradient(left , rgb(30, 190, 158) , rgb(55, 156, 223) 100%);
+background: -ms-linear-gradient(left , rgb(30, 190, 158) , rgb(55, 156, 223) 100%);
+background: -moz-linear-gradient(left , rgb(30, 190, 158) , rgb(55, 156, 223) 100%);
+background: -webkit-linear-gradient(left , rgb(30, 190, 158) , rgb(55, 156, 223) 100%);
+	
+}
+/* µå×Ï */
+.dz{
+	background: linear-gradient(left , rgb(55, 156, 223) , rgb(159, 92, 186) 100%);
+background: -o-linear-gradient(left , rgb(55, 156, 223) , rgb(159, 92, 186) 100%);
+background: -ms-linear-gradient(left , rgb(55, 156, 223) , rgb(159, 92, 186) 100%);
+background: -moz-linear-gradient(left , rgb(55, 156, 223) , rgb(159, 92, 186) 100%);
+background: -webkit-linear-gradient(left , rgb(55, 156, 223) , rgb(159, 92, 186) 100%);
+	
+}
+.thisPageBtn{
+	-webkit-filter:brightness(0.8);
+	-moz-filter:brightness(0.8);
+	filter:brightness(0.8);
 }

@@ -49,11 +49,11 @@
 		layui.use('layer', function(){
 		  layer = layui.layer;
 		});              
-		getTechnology();
+		getPersonnel();
 	})
-	function getTechnology(byString) {
+	function getPersonnel(byString) {
 		$("#main").html("");
-		$.post("http://localhost/blog/queryTechnology",{
+		$.post("queryPersonnel_admin",{
 			byString:byString
 		}, function(res) {
 			$.each(JSON.parse(res), function(i, val) {
@@ -63,11 +63,11 @@
 					+")' class='layui-btn' style='background-color:lightsalmon'>删除</button></span></div><pre class='content'>"
 					+ val.content + "</pre></div>"
 				)
-			});
+			}); 
 		})
 	}
 	function search(){
-		getTechnology($("#search").val());
+		getPersonnel($("#search").val());
 	} 
 	var index;
 	function openAddWindow(){
@@ -94,14 +94,14 @@
 		}else if($("#addContent").val()==""){
 			layer.msg("请输入内容！",{icon: 5});
 		}else{
-			$.post("addTechnology",{
+			$.post("addPersonnel",{
 				title:$("#addTitle").val(),
 				content:$("#addContent").val()
 			},function(res){
 				if(res){
 					layer.close(index);
 					layer.msg("添加成功！",{icon: 1});
-					getTechnology();
+					getPersonnel();
 				}else{
 					layer.msg("添加失败！",{icon: 0});
 				}
@@ -114,14 +114,14 @@
 		}else if($("#updateContent").val()==""){
 			layer.msg("请输入试题内容！",{icon: 5});
 		}else{
-			$.post("updateTechnology",{
+			$.post("updatePersonnel",{
 				content:$("#updateContent").val(),
 				title:$("#updateTitle").val(),
 				id:id
 			},function(res){
-				if(res){
+				if(res){ 
 					layer.close(index);
-					getTechnology();
+					getPersonnel();
 					layer.msg("修改成功！",{icon: 1});
 				}else{
 					layer.msg("修改失败！",{icon: 0});
@@ -135,12 +135,12 @@
 			title:"delete"
 		},
 		function(){
-			$.post("deleteTechnology",{
-				technologyID:id
+			$.post("deletePersonnel",{
+				personnelID:id
 			},function(res){
 				if(res){
 					layer.msg('删除成功！', {icon: 1});
-					getTechnology();
+					getPersonnel();
 				}else{
 					layer.msg('删除失败！', {icon: 2});
 				}
@@ -150,9 +150,12 @@
 	function cancel(){
 		 layer.close(index);
 	}
-	function exit(){
-		alert("exit");
-	}
+	$(document).keydown(function(event){
+		var keycode = event.keyCode;
+		if(keycode==13){ 
+			getPersonnel($("#search").val());
+		}
+	});
 </script>
 </head>
 <body>
@@ -163,12 +166,12 @@
 			<sapn><a href="index.jsp"><img style="border-radius: 50%;width: 40px;" src="static/img/touxiang.jpg"/></a>&nbsp;&nbsp;管理员 - 人事面试</sapn>
 			<div id="" style="font-family: '微软雅黑';display: flex;flex-direction:row;">
 			    <input id="search" style="border: lightgray 1px solid;font-size: 14px;"  name="search" class="layui-input" type="text" placeholder="请输入标题">&nbsp;
-			   <button onclick="totechnology_admin()" class="layui-btn layui-btn-normal">技术</button>
-			    <button onclick="topersonnel_admin()" class="layui-btn layui-btn-danger">人事</button>
-			    <button onclick="tolog_admin()" class="layui-btn layui-btn-normal">日志</button>
-			    <button onclick="totools_admin()" class="layui-btn layui-btn-normal">工具</button>
-			    <button onclick="toadvise_admin()" class="layui-btn layui-btn-normal">建议</button>
-			    <button onclick="tofeedback_admin()" class="layui-btn layui-btn-normal">评论</button>
+			   <a href="technology_admin.jsp" class="layui-btn hc ">技术</a>
+			    <a href="personnel_admin.jsp" class="layui-btn ch thisPageBtn">人事</a>
+			    <a href="log_admin.jsp" class="layui-btn hl">日志</a>
+			    <a href="tools_admin.jsp" class="layui-btn lq">工具</a>
+			    <a href="advise_admin.jsp" class="layui-btn qd">建议</a>
+			    <a href="feedback_admin.jsp" class="layui-btn dz">评论</a>
 			    <button onclick="openAddWindow()" class="layui-btn"><i class="layui-icon layui-icon-add-1"></i>添加</button>
 				<button onclick="exit()" class="layui-btn layui-btn-danger"><i class="layui-icon layui-icon-close"></i>退出</button>
 			</div> 

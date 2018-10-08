@@ -105,7 +105,7 @@
 				}else{
 					layer.msg("添加失败！",{icon: 0});
 				}
-			})
+			},"json")
 		}
 	}
 	function updateCommit(id){
@@ -142,7 +142,7 @@
 					layer.msg('删除成功！', {icon: 1});
 					getTechnology();
 				}else{
-					layer.msg('删除失败！', {icon: 2});
+					layer.msg('删除失败！', {icon: 0});
 				}
 			},"json")
 		})
@@ -150,6 +150,12 @@
 	function cancel(){
 		 layer.close(index);
 	}
+	$(document).keydown(function(event){
+		var keycode = event.keyCode;
+		if(keycode==13){ 
+			getTechnology($("#search").val());
+		}
+	});
 </script>
 </head>
 <body>
@@ -160,15 +166,15 @@
 			<sapn><a href="index.jsp"><img style="border-radius: 50%;width: 40px;" src="static/img/touxiang.jpg"/></a>&nbsp;&nbsp;管理员 - 技术面试</sapn>
 			<div id="" style="font-family: '微软雅黑';display: flex;flex-direction:row;">
 			    <input id="search" style="border: lightgray 1px solid;font-size: 14px;"  name="search" class="layui-input" type="text" placeholder="请输入标题">&nbsp;
-			    <button onclick="totechnology_admin()" class="layui-btn layui-btn-danger">技术</button>
-			    <button onclick="topersonnel_admin()" class="layui-btn layui-btn-normal">人事</button>
-			    <button onclick="tolog_admin()" class="layui-btn layui-btn-normal">日志</button>
-			    <button onclick="totools_admin()" class="layui-btn layui-btn-normal">工具</button>
-			    <button onclick="toadvise_admin()" class="layui-btn layui-btn-normal">建议</button>
-			    <button onclick="tofeedback_admin()" class="layui-btn layui-btn-normal">评论</button>
+			    <a href="technology_admin.jsp" class="layui-btn hc thisPageBtn">技术</a>
+			    <a href="personnel_admin.jsp" class="layui-btn ch">人事</a>
+			    <a href="log_admin.jsp" class="layui-btn hl">日志</a>
+			    <a href="tools_admin.jsp" class="layui-btn lq">工具</a>
+			    <a href="advise_admin.jsp" class="layui-btn qd">建议</a>
+			    <a href="feedback_admin.jsp" class="layui-btn dz">评论</a>
 			    <button onclick="openAddWindow()" class="layui-btn"><i class="layui-icon layui-icon-add-1"></i>添加</button>
 				<button onclick="exit()" class="layui-btn layui-btn-danger"><i class="layui-icon layui-icon-close"></i>退出</button>
-			</div> 
+			</div>  
 		</div>
 	</div>
 	<div id="main"></div> 

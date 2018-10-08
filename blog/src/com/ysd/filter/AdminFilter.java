@@ -36,7 +36,7 @@ public class AdminFilter implements Filter{
         		System.out.println("!admin");
         		response.sendRedirect("/blog/index.jsp");
         	}else {
-        		chain.doFilter(request, response);  
+        		chain.doFilter(request, response);
             	return;
         	}
         }

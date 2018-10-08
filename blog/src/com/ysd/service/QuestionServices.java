@@ -12,7 +12,7 @@ public interface QuestionServices {
 	public boolean deleteTechnology(Integer technologyID);
 	public boolean updateTechnology(Technology technology);
 	
-	public List<Personnel> queryAllPersonnel();
+	public List<Personnel> queryAllPersonnel(String byString);
 	public boolean addPersonnel(Personnel personnel);
 	public boolean deletePersonnel(Integer personnelID);
 	public boolean updatePersonnel(Personnel personnel);

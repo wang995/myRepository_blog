@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,43 +28,71 @@ public class QuestionsController {
 	}
 	
 	@RequestMapping("/addTechnology")
-	public @ResponseBody boolean addTechnology(Technology technology) {
-		System.out.println("<<<<<<<添加");
-		return questionsServiceImpl.addTechnology(technology);
+	public @ResponseBody boolean addTechnology(HttpServletRequest request,Technology technology) {
+		HttpSession session = request.getSession();
+		if(session==null || session.getAttribute("isAdmin")==null) {
+			return false;
+		}else {
+			return questionsServiceImpl.addTechnology(technology);
+		}
+		
 	}
 	
 	@RequestMapping("/deleteTechnology")
-	public @ResponseBody boolean deleteTechnology(Integer technologyID) {
-		System.out.println(technologyID);
-		return questionsServiceImpl.deleteTechnology(technologyID);
+	public @ResponseBody boolean deleteTechnology(HttpServletRequest request,Integer technologyID) {
+		HttpSession session = request.getSession();
+		if(session==null || session.getAttribute("isAdmin")==null) {
+			return false;
+		}else {
+			return questionsServiceImpl.deleteTechnology(technologyID);
+		}
+		
 	}
 	
 	@RequestMapping("/updateTechnology")
-	public @ResponseBody boolean updateTechnology(Technology technology) {
-		System.out.println(technology);
-		return questionsServiceImpl.updateTechnology(technology);
+	public @ResponseBody boolean updateTechnology(HttpServletRequest request,Technology technology) {
+		HttpSession session = request.getSession();
+		if(session==null || session.getAttribute("isAdmin")==null) {
+			return false;
+		}else {
+			return questionsServiceImpl.updateTechnology(technology);
+		}
+		
 	}
 	//--------------------------------------------------------------------------
-	@RequestMapping("/queryPersonnel")
-	public @ResponseBody List<Personnel> queryAllPersonnel() {
-		return questionsServiceImpl.queryAllPersonnel();
+	@RequestMapping("/queryPersonnel_admin")
+	public @ResponseBody List<Personnel> queryAllPersonnel(String byString) {
+		return questionsServiceImpl.queryAllPersonnel(byString);
 	}
 	
 	@RequestMapping("/addPersonnel")
-	public @ResponseBody boolean addPersonnel(Personnel personnel) {
-		System.out.println("<<<<<<<添加");
-		System.out.println(personnel);
-		return questionsServiceImpl.addPersonnel(personnel);
+	public @ResponseBody boolean addPersonnel(HttpServletRequest request,Personnel personnel) {
+		HttpSession session = request.getSession();
+		if(session==null || session.getAttribute("isAdmin")==null) {
+			return false;
+		}else {
+			return questionsServiceImpl.addPersonnel(personnel);
+		}
 	}
 	
 	@RequestMapping("/deletePersonnel")
-	public @ResponseBody boolean deletePersonnel(Integer personnelID) {
-		return questionsServiceImpl.deletePersonnel(personnelID);
+	public @ResponseBody boolean deletePersonnel(HttpServletRequest request,Integer personnelID) {
+		HttpSession session = request.getSession();
+		if(session==null || session.getAttribute("isAdmin")==null) {
+			return false;
+		}else {
+			return questionsServiceImpl.deletePersonnel(personnelID);
+		}
 	}
 	
 	@RequestMapping("/updatePersonnel")
-	public @ResponseBody boolean updatePersonnel(Personnel personnel) {
-		return questionsServiceImpl.updatePersonnel(personnel);
+	public @ResponseBody boolean updatePersonnel(HttpServletRequest request,Personnel personnel) {
+		HttpSession session = request.getSession();
+		if(session==null || session.getAttribute("isAdmin")==null) {
+			return false;
+		}else {
+			return questionsServiceImpl.updatePersonnel(personnel);
+		}
 	}
 	
 	@RequestMapping("/admin/verify")

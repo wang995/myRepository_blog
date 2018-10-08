@@ -32,8 +32,10 @@
 	margin:5px auto;
 }
 .smbtn{
-	z-index: 0px;
 	float:right;
+}
+.smbtn .layui-btn:hover{
+	filter:brightness(0.95);
 }
 </style>
 <script type="text/javascript">
@@ -132,6 +134,12 @@
 	function cancel(){
 		 layer.close(index);
 	}
+	$(document).keydown(function(event){
+		var keycode = event.keyCode;
+		if(keycode==13){ 
+			getTechnology($("#search").val());
+		}
+	});
 </script>
 </head>
 <body>

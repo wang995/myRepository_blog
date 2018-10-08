@@ -1,27 +1,25 @@
-function totechnology_admin(){
-	window.location.href="technology_admin.jsp";
-}
-function topersonnel_admin(){
-	window.location.href="personnel_admin.jsp";
-}
-function tolog_admin(){
-	window.location.href="log_admin.jsp";
-}
-function toadvise_admin(){
-	window.location.href="advise_admin.jsp";
-}
-function tofeedback_admin(){
-	window.location.href="feedback_admin.jsp";
-}
-function totools_admin(){
-	window.location.href="tools_admin.jsp";
-}
 function exit(){
-	$.post("admin/exit_admin",function(res){
-		if(res){
-			window.location.href="index.jsp"
-		}else{
-			layer.msg("退出失败！",{icon: 0});
-		}
-	},"json")
+	layer.confirm("确定退出管理员权限？",{
+		title:"Exit"
+	},
+	function(){
+		$.post("admin/exit_admin",function(res){
+			if(res){
+				location.replace("index.jsp");
+			}else{
+				layer.msg("退出失败！",{icon: 0});
+			}
+		},"json")
+	})
+};
+function keycode(){
+	//键盘事件
+	var keycode
+	$(document).keydown(function(event){
+		var keycode = event.keyCode;
+	});
+	return keycode;
+}
+function tips(content,icon){
+	layer.msg(content,{icon: icon});
 }

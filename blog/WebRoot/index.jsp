@@ -37,8 +37,21 @@
 		getCount();
 		layui.use('layer', function(){
 		  layer = layui.layer;
-		});          
+		});  
 	})
+	//键盘事件，数字键盘跳转
+	$(document).keydown(function(event){
+		var keycode = event.keyCode;
+		if(keycode==97){
+			window.location.href="technology.jsp";
+		}else if(keycode==98){
+			window.location.href="technology.jsp";
+		}else if(keycode==99){
+			window.location.href="technology.jsp";
+		}else if(keycode==100){
+			window.location.href="technology.jsp";
+		}
+	});
 	function getCount(){
 		$.post("getCount",function(res){
 			$("#depToolsNum").text(res.depToolsNum);
@@ -119,13 +132,13 @@
 			<sapn><a href="index.jsp"><img style="border-radius: 50%;width: 40px;" src="static/img/touxiang.jpg"/></a>&nbsp;&nbsp;XL995-个人博客</sapn>
 			<div id="" style="font-family: '微软雅黑';display: flex;flex-direction:row;">
 				<button onclick="openAdviceWindow()" class="layui-btn" style="background-color:#00bab4"><i class="layui-icon layui-icon-survey"></i>网站建议</button>
-				<button onclick="advice()" class="layui-btn layui-btn-normal"><i class="layui-icon layui-icon-survey"></i>公告</button>
+				<button onclick="advice()" class="layui-btn layui-btn-normal"><i class="layui-icon layui-icon-about"></i>公告</button>
 				<button onclick="admin()" class="layui-btn" style="background-color:coral"><i class="layui-icon layui-icon-username"></i>管理员</button>
 			</div>   
 		</div>
-	</div> 
+	</div>  
 	<div id="main">
-		 <div class="he_border1 BiaoQian">
+		 <div id="js" class="he_border1 BiaoQian">
                 <img class="he_border1_img" src="static/img/bd315c6034a85edff2c9d81942540923dd547546.png" alt="Image 01">
                 <div class="he_border1_caption">
 		 		<h1 id="technologyNum"></h1>
@@ -137,21 +150,21 @@
 		<div class="he_border1 BiaoQian">
                 <img class="he_border1_img" src="static/img/timg.png" alt="">
                 <div class="he_border1_caption">
-		 			<img  style="float: right;" width="28px" src="static/img/lock.png"/>
-                	 <h1 id="personnelNum">50</h1>  
+		 			<img width="28px" src="static/img/lock.png"/>
+                	 <!-- <h1 id="personnelNum">50</h1>  --> 
                     <h3 class="he_border1_caption_h">人事面试</h3>
 					<p class="he_border1_caption_p">人事面试,暂未开放</p>
-                    <a class="he_border1_caption_a" href="http://www.baidu.com"></a>
+                    <a onclick="tips('人事面试暂未开放!',4)" class="he_border1_caption_a" href="#"></a>
                 </div>  
          </div>
          <div class="he_border1 BiaoQian">
                 <img class="he_border1_img" src="static/img/tooopen_sy_171619983217.jpg" alt="Image 01">
                 <div class="he_border1_caption">
-		 			<img style="float: right;" width="28px" src="static/img/lock.png"/>
-		 			<h1 id="logNum">1</h1>  
+		 			<img width="28px" src="static/img/lock.png"/>
+		 			<!-- <h1 id="logNum">1</h1>  --> 
                     <h3 class="he_border1_caption_h">个人日志</h3>
 					<p class="he_border1_caption_p">个人日志,暂未开放</p>
-                    <a class="he_border1_caption_a" href="http://www.baidu.com"></a>
+                    <a onclick="tips('个人日志暂未开放!',4)" class="he_border1_caption_a" href="#"></a>
                 </div>
          </div>
          <div class="he_border1 BiaoQian">
@@ -160,7 +173,7 @@
 		 		<h1 id="depToolsNum"></h1>
                     <h3 class="he_border1_caption_h">软件工具下载</h3>
 					<p class="he_border1_caption_p">阿里云OSS对象存储</p>
-                    <a class="he_border1_caption_a" href="http://www.baidu.com"></a>
+                    <a onclick="tips('该模块正在测试中...',0)" class="he_border1_caption_a" href="#"></a>
                 </div>
          </div>
          <div class="he_border1 BiaoQian">
@@ -169,7 +182,7 @@
 		 		<img width="32px" src="static/img/dep.png"/>
                     <h3 class="he_border1_caption_h">其它模块+</h3>
 					<p class="he_border1_caption_p">博主正在努力开发中...</p>
-                    <a class="he_border1_caption_a" href="http://www.baidu.com"></a>
+                    <a class="he_border1_caption_a" href="#"></a>
                 </div>
          </div>
 	</div>

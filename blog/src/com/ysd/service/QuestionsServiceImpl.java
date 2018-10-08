@@ -8,11 +8,15 @@ import org.springframework.stereotype.Service;
 import com.ysd.entity.Count;
 import com.ysd.entity.Personnel;
 import com.ysd.entity.Technology;
+import com.ysd.mapper.PersonnelMapper;
 import com.ysd.mapper.QuestionsMapper;
 @Service
 public class QuestionsServiceImpl implements QuestionServices{
 	@Autowired
 	QuestionsMapper questionsMapper;
+	@Autowired
+	PersonnelMapper personnelMapper;
+	
 	@Override
 	public List<Technology> queryAllTechnology(String byString) {
 		// TODO Auto-generated method stub
@@ -38,27 +42,27 @@ public class QuestionsServiceImpl implements QuestionServices{
 	}
 
 	@Override
-	public List<Personnel> queryAllPersonnel() {
+	public List<Personnel> queryAllPersonnel(String byString) {
 		// TODO Auto-generated method stub
-		return null;
+		return personnelMapper.queryAllPersonnel(byString);
 	}
 
 	@Override
 	public boolean addPersonnel(Personnel personnel) {
 		// TODO Auto-generated method stub
-		return false;
+		return personnelMapper.addPersonnel(personnel);
 	}
 
 	@Override
 	public boolean deletePersonnel(Integer personnelID) {
 		// TODO Auto-generated method stub
-		return false;
+		return personnelMapper.deletePersonnel(personnelID);
 	}
 
 	@Override
 	public boolean updatePersonnel(Personnel personnel) {
 		// TODO Auto-generated method stub
-		return false;
+		return personnelMapper.updatePersonnel(personnel);
 	}
 
 	@Override

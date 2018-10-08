@@ -16,9 +16,9 @@ public class WebSiteAdviseContorller {
 	@Resource
 	WebSiteAdviseServiceImpl adviseServiceImpl;
 	
-	@RequestMapping("/queryAdvice")
-	public @ResponseBody List<WebSiteAdvise> queryAllTechnology() {
-		List<WebSiteAdvise> list = adviseServiceImpl.queryAllAdvice();
+	@RequestMapping("/queryAdvice_admin")
+	public @ResponseBody List<WebSiteAdvise> queryAllTechnology(String byString) {
+		List<WebSiteAdvise> list = adviseServiceImpl.queryAllAdvice(byString);
 		return list;
 	}
 	

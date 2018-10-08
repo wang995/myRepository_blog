@@ -32,9 +32,9 @@ public class WebSiteAdviseServiceImpl implements WebSiteAdviseService{
 	}
 
 	@Override
-	public List<com.ysd.entity.WebSiteAdvise> queryAllAdvice() {
+	public List<com.ysd.entity.WebSiteAdvise> queryAllAdvice(String byString) {
 		// TODO Auto-generated method stub
-		return webSiteAdviseMapper.queryAllAdvice();
+		return webSiteAdviseMapper.queryAllAdvice(byString);
 	}
 	
 

@@ -3,8 +3,13 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ysd.mapper.PersonnelMapper">
-	<select id="queryAllPersonnel" resultType="com.ysd.entity.Personnel">
+	<select id="queryAllPersonnel" resultType="com.ysd.entity.Personnel" parameterType="String">
 		select * from personnel
+		<where>
+			<if test="_parameter != null and _parameter != '' ">  
+			     title like "%"#{byString}"%"
+			</if>
+		</where>
 	</select>
 	
 	<insert id="addPersonnel" parameterType="com.ysd.entity.Personnel">
@@ -12,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="updatePersonnel" parameterType="com.ysd.entity.Personnel">
-		update personnel set title=#{title},content=#{content}
+		update personnel set title=#{title},content=#{content}  where id=#{id}
 	</update>
 	
 	<delete id="deletePersonnel" parameterType="Integer">
