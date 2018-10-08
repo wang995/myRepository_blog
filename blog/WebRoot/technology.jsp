@@ -51,13 +51,18 @@
 		$.post("queryTechnology",{
 			byString:byString
 		}, function(res) {
-			$.each(JSON.parse(res), function(i, val) {
-				$("#main").prepend(
-						"<div class='Technology'><div class='title'>"
-								+ val.title + "<span style='color:lightgrey'>_"+val.id+"</spna><span class='smbtn'><button onclick='openFeedBackWindow("+val.id
-								+")' class='layui-btn layui-btn-primary feedback'><i class='layui-icon layui-icon-username'></i>反馈 / 纠错 / 评论</button><button onclick='showhide_s(this)' class='layui-btn layui-btn-primary'><i class='layui-icon layui-icon-username'></i>查看答案</button></span></div><pre class='content'>"
-								+ val.content + "</pre></div>")
-			});
+			if(JSON.parse(res)!=""){
+				$.each(JSON.parse(res), function(i, val) {
+						$("#main").prepend(
+							"<div class='Technology'><div class='title'>"
+							+ val.title + "<span style='color:lightgrey'>_"+val.id+"</spna><span class='smbtn'><button onclick='openFeedBackWindow("+val.id
+							+")' class='layui-btn layui-btn-primary feedback'><i class='layui-icon layui-icon-username'></i>反馈 / 纠错 / 评论</button><button onclick='showhide_s(this)' class='layui-btn layui-btn-primary'><i class='layui-icon layui-icon-username'></i>查看答案</button></span></div><pre class='content'>"
+							+ val.content + "</pre></div>")
+				});
+			}else{
+				$("#main").html("<div class='isempty'><img src='static/img/gantanhao.png'/>&nbsp;没有搜到任何内容，换个词试试？</div>");
+			}
+			
 		})
 	}
 	function search(){

@@ -56,14 +56,18 @@
 		$.post("http://localhost/blog/queryTechnology",{
 			byString:byString
 		}, function(res) {
-			$.each(JSON.parse(res), function(i, val) {
-				$("#main").prepend(
-					"<div class='Technology'><div class='title'>"
-					+ val.title +"<span style='color:lightgrey'>_"+val.id+"</span><span class='updatebtn'><button onclick='openUpdateWindow("+i+","+res+")' class='layui-btn' style='background: lightseagreen;'>修改</button><button onclick='deleteT("+val.id
-					+")' class='layui-btn' style='background-color:lightsalmon'>删除</button></span></div><pre class='content'>"
-					+ val.content + "</pre></div>"
-				)
-			});
+			if(JSON.parse(res)!=""){
+				$.each(JSON.parse(res), function(i, val) {
+					$("#main").prepend(
+						"<div class='Technology'><div class='title'>"
+						+ val.title +"<span style='color:lightgrey'>_"+val.id+"</span><span class='updatebtn'><button onclick='openUpdateWindow("+i+","+res+")' class='layui-btn' style='background: lightseagreen;'>修改</button><button onclick='deleteT("+val.id
+						+")' class='layui-btn' style='background-color:lightsalmon'>删除</button></span></div><pre class='content'>"
+						+ val.content + "</pre></div>"
+					)
+				});
+			}else{
+				$("#main").html("<div class='isempty'><img src='static/img/gantanhao.png'/>&nbsp;没有搜到任何内容，换个词试试？</div>");
+			}
 		})
 	}
 	function search(){

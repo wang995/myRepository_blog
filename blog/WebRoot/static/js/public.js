@@ -23,3 +23,6 @@ function keycode(){
 function tips(content,icon){
 	layer.msg(content,{icon: icon});
 }
+function isEmploy(){
+	$("#main").html("")
+}

@@ -56,14 +56,18 @@
 		$.post("queryPersonnel_admin",{
 			byString:byString
 		}, function(res) {
-			$.each(JSON.parse(res), function(i, val) {
-				$("#main").prepend(
-					"<div class='Technology'><div class='title'>"
-					+ val.title +"<span style='color:lightgrey'>_"+val.id+"</span><span class='updatebtn'><button onclick='openUpdateWindow("+i+","+res+")' class='layui-btn' style='background: lightseagreen;'>修改</button><button onclick='deleteT("+val.id
-					+")' class='layui-btn' style='background-color:lightsalmon'>删除</button></span></div><pre class='content'>"
-					+ val.content + "</pre></div>"
-				)
-			}); 
+			if(JSON.parse(res)!=""){
+				$.each(JSON.parse(res), function(i, val) {
+						$("#main").prepend(
+							"<div class='Technology'><div class='title'>"
+							+ val.title +"<span style='color:lightgrey'>_"+val.id+"</span><span class='updatebtn'><button onclick='openUpdateWindow("+i+","+res+")' class='layui-btn' style='background: lightseagreen;'>修改</button><button onclick='deleteT("+val.id
+							+")' class='layui-btn' style='background-color:lightsalmon'>删除</button></span></div><pre class='content'>"
+							+ val.content + "</pre></div>"
+						)
+				}); 
+			}else{
+				$("#main").html("<div class='isempty'><img src='static/img/gantanhao.png'/>&nbsp;没有搜到任何内容，换个词试试？</div>");
+			}
 		})
 	}
 	function search(){
@@ -72,7 +76,7 @@
 	var index;
 	function openAddWindow(){
 		index = layer.open({
-		  title:"添加技术面试题",
+		  title:"添加人事面试题",
 		  type: 1, 
 		  area: ['924px', '539px'], //宽高
 		  content: "<div class='updatediv'><input id='addTitle' type='text' placeholder='标题' style='width: 800px;display: inline;margin: 10px 0px;' class='layui-input'><textarea id='addContent' placeholder='说点什么吧！' style='width: 800px;' class='layui-textarea'></textarea><span style='float: right;'><button onclick='cancel()' class='layui-btn layui-btn-danger'>取消</button><button onclick='addCommit()' class='layui-btn layui-btn-normal'>提交</button> </span></div>",
@@ -81,7 +85,7 @@
 	}
 	function openUpdateWindow(i,res){
 		index = layer.open({
-		  title:"修改技术面试题 -"+res[i].id,
+		  title:"修改人事面试题 - "+res[i].id,
 		  type: 1, 
 		  area: ['924px', '539px'], //宽高
 		  content: "<div class='updatediv'><input id='updateTitle' type='text' placeholder='标题' value='"+res[i].title+"' style='width: 800px;display: inline;margin: 10px 0px;' class='layui-input'><textarea id='updateContent' placeholder='说点什么吧！' style='width:800px;' class='layui-textarea'>"+res[i].content+"</textarea><span style='float: right;'><button onclick='cancel()' class='layui-btn layui-btn-danger'>取消</button><button onclick='updateCommit("+res[i].id+")' class='layui-btn layui-btn-normal'>提交</button> </span></div>",
@@ -130,8 +134,7 @@
 		}
 	}
 	function deleteT(id){
-		
-		layer.confirm("确定删除技术面试题 - <span style='color:red;'>"+id+"</span> ?",{
+		layer.confirm("确定删除人事面试题 - <span style='color:red;'>"+id+"</span> ?",{
 			title:"delete"
 		},
 		function(){
@@ -154,7 +157,7 @@
 		var keycode = event.keyCode;
 		if(keycode==13){ 
 			getPersonnel($("#search").val());
-		}
+		} 
 	});
 </script>
 </head>
