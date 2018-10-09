@@ -36,6 +36,6 @@ public class WebSiteAdviseServiceImpl implements WebSiteAdviseService{
 		// TODO Auto-generated method stub
 		return webSiteAdviseMapper.queryAllAdvice(byString);
 	}
-	
+	//什么也没干！！！！！！！！！
 
 }
