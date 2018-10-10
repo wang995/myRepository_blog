@@ -7,24 +7,24 @@
 <title>Xl995_Blog - 网站建议_管理员</title>
 <%@ include file="/commons/common.jsp"%>
 <style type="text/css">
-.title {
-	margin-bottom: 30px;
+.adviserInfo {
+	margin: 30px 0px;
 	word-break: break-all;
 	white-space: pre-wrap;
 	font-size: 16px;
 	color:grey;
 }
 .content {
+	margin: 30px 0px;
 	word-break: break-all;
 	white-space: pre-wrap;
 	font-size: 20px;
 }
 #main {
-	width: 70%;
-	margin: 50px auto;
+	width: 80%;
+	margin: 80px auto;
 }
 .Technology {
-	padding: 30px 0px;
 	border-bottom: 1px solid gray;
 }
 .updatediv{
@@ -59,11 +59,11 @@
 		}, function(res) {
 			$.each(JSON.parse(res), function(i, val) {
 				$("#main").prepend(
-					"<div class='Technology'><div class='title'>"
+					"<div class='Technology'><pre class='content'>"
+					+ val.content + "</pre><div class='adviserInfo'>"
 					+ val.id +"\t"
 					+ timestampToTime(val.creatTime) +"\t\t"
-					+ val.name +"</div><pre class='content'>"
-					+ val.content + "</pre></div>"
+					+ val.name +"</div></div>"
 				)
 			});
 		})
@@ -158,11 +158,11 @@
 	<!--http://localhost:8080/blog/queryTechnology-->
 	<div id="head">
 		<div id="headconent"
-			style="width: 70%; margin: 0px auto; height: 50px">
+			style="width: 80%; margin: 0px auto; height: 50px">
 			<sapn><a href="index.jsp"><img style="border-radius: 50%;width: 40px;" src="static/img/touxiang.jpg"/></a>&nbsp;&nbsp;管理员 - 网站建议</sapn>
 			<div id="" style="font-family: '微软雅黑';display: flex;flex-direction:row;">
 			    <input id="search" style="border: lightgray 1px solid;font-size: 14px;"  name="search" class="layui-input" type="text" placeholder="请输入标题">&nbsp;
-			  	<a href="technology_admin.jsp" class="layui-btn hc ">技术</a>
+			  	<a href="technology_admin.jsp" class="layui-btn hc ">技术&nbsp;&nbsp;<span>50</span></a>
 			    <a href="personnel_admin.jsp" class="layui-btn ch">人事</a>
 			    <a href="log_admin.jsp" class="layui-btn hl">日志</a>
 			    <a href="tools_admin.jsp" class="layui-btn lq">工具</a>

@@ -103,3 +103,19 @@ background: -webkit-linear-gradient(left , rgb(55, 156, 223) , rgb(159, 92, 186)
 .isempty img{
 	width: 28px;
 }
+layui-textarea{
+	font-family: Consolas;
+}
+.title {
+	margin-bottom: 28px;
+	font-size: 26px;
+	word-break: break-all;
+	white-space: pre-wrap;
+}
+.content {
+	word-break: break-all;
+	white-space: pre-wrap;
+	font-size: 15px;
+	line-height:24px;
+	font-family: Consolas;
+}

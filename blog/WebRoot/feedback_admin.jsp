@@ -7,17 +7,6 @@
 <title>Xl995_Blog - 试题反馈_管理员</title>
 <%@ include file="/commons/common.jsp"%>
 <style type="text/css">
-.title {
-	margin-bottom: 30px;
-	font-size: 24px;
-	word-break: break-all;
-	white-space: pre-wrap;
-}
-.content {
-	word-break: break-all;
-	white-space: pre-wrap;
-	font-size: 18px;
-}
 #main {
 	width: 70%;
 	margin: 50px auto;

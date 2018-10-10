@@ -9,3 +9,4 @@
 <script type="text/javascript" src="${wxl}/static/js/jquery.nicescroll.min.js"></script>
 <script type="text/javascript" src="${wxl}/static/js/util.js"></script>
 <script type="text/javascript" src="${wxl}/static/js/public.js"></script>
+<script type="text/javascript" src="${wxl}/static/js/HtmlUtil.js"></script>

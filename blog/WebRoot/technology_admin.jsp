@@ -7,16 +7,8 @@
 <title>Xl995_Blog - 技术面试_管理员</title>
 <%@ include file="/commons/common.jsp"%>
 <style type="text/css">
-.title {
-	margin-bottom: 30px;
-	font-size: 24px;
-	word-break: break-all;
-	white-space: pre-wrap;
-}
-.content {
-	word-break: break-all;
-	white-space: pre-wrap;
-	font-size: 18px;
+layui-textarea{
+	font-family: Consolas;
 }
 #main {
 	width: 70%;
@@ -41,6 +33,7 @@
 #updateContent{
 	margin-bottom:5px;
 	height:380px;
+	font-family: Consolas;
 }
 </style>
 <script type="text/javascript">
@@ -88,7 +81,7 @@
 		  title:"修改技术面试题 -"+res[i].id,
 		  type: 1, 
 		  area: ['924px', '539px'], //宽高
-		  content: "<div class='updatediv'><input id='updateTitle' type='text' placeholder='标题' value='"+res[i].title+"' style='width: 800px;display: inline;margin: 10px 0px;' class='layui-input'><textarea id='updateContent' placeholder='说点什么吧！' style='width:800px;' class='layui-textarea'>"+res[i].content+"</textarea><span style='float: right;'><button onclick='cancel()' class='layui-btn layui-btn-danger'>取消</button><button onclick='updateCommit("+res[i].id+")' class='layui-btn layui-btn-normal'>提交</button> </span></div>",
+		  content: "<div class='updatediv'><input id='updateTitle' type='text' placeholder='标题' value='"+HtmlUtil.htmlDecodeByRegExp(res[i].title)+"' style='width: 800px;display: inline;margin: 10px 0px;' class='layui-input'><textarea id='updateContent' placeholder='说点什么吧！' style='width:800px;' class='layui-textarea'>"+HtmlUtil.htmlDecodeByRegExp(res[i].content)+"</textarea><span style='float: right;'><button onclick='cancel()' class='layui-btn layui-btn-danger'>取消</button><button onclick='updateCommit("+res[i].id+")' class='layui-btn layui-btn-normal'>提交</button> </span></div>",
 		  closeBtn: 1,
 		}); 
 	}
@@ -99,8 +92,8 @@
 			layer.msg("请输入内容！",{icon: 5});
 		}else{
 			$.post("addTechnology",{
-				title:$("#addTitle").val(),
-				content:$("#addContent").val()
+				title:HtmlUtil.htmlEncodeByRegExp($("#addTitle").val()),
+				content:HtmlUtil.htmlEncodeByRegExp($("#addContent").val())
 			},function(res){
 				if(res){
 					layer.close(index);
@@ -119,8 +112,8 @@
 			layer.msg("请输入试题内容！",{icon: 5});
 		}else{
 			$.post("updateTechnology",{
-				content:$("#updateContent").val(),
-				title:$("#updateTitle").val(),
+				content:HtmlUtil.htmlEncodeByRegExp($("#updateContent").val()),
+				title:HtmlUtil.htmlEncodeByRegExp($("#updateTitle").val()),
 				id:id
 			},function(res){
 				if(res){
